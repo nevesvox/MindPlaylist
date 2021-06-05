@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -75,6 +76,9 @@ public class SearchMusic extends AppCompatActivity {
                                     music.setTrackName(object.getString("trackName") +
                                             " (" + object.getString("artistName") + ")");
                                     music.setArtworkUrl100(object.getString("artworkUrl100"));
+                                    music.setCollectionName(object.getString("collectionName"));
+                                    music.setPrimaryGenreName(object.getString("primaryGenreName"));
+                                    music.setCountry(object.getString("country"));
 
                                     musics.add(music);
                                 }
@@ -100,5 +104,4 @@ public class SearchMusic extends AppCompatActivity {
         );
         queue.add(jsonObjectRequest);
     }
-
 }
