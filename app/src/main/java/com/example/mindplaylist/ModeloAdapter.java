@@ -27,7 +27,6 @@ public class ModeloAdapter extends RecyclerView.Adapter<ModeloAdapter.ViewHolder
     private LayoutInflater inflater;
     private ItemClickListener itemClickListener;
     private ItemLongClickListener itemLongClickListener;
-    private Music selectedMusic;
 
     // O segundo parâmetro deverá ser adaptado para futuros projetos
     public ModeloAdapter(Context context, List<Music> dados) {
@@ -48,7 +47,6 @@ public class ModeloAdapter extends RecyclerView.Adapter<ModeloAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Music music = dados.get(position);
-        selectedMusic = music;
         holder.textView.setText(music.getTrackName());
         Picasso.get().load(music.getArtworkUrl100()).error(R.drawable.ic_launcher_background)
                 .resize(100, 100).into(holder.imageView);
@@ -82,8 +80,14 @@ public class ModeloAdapter extends RecyclerView.Adapter<ModeloAdapter.ViewHolder
 
                 @Override
                 public void onClick(View v) {
-                    Log.d("teste", "teste" + textView.getText());
+                    Music selectedMusic = dados.get(getAdapterPosition());
+                    Log.d("teste", "teste" + selectedMusic.getTrackName());
                     Intent intent = new Intent(v.getContext(), MusicDetails.class);
+                    intent.putExtra("trackName", selectedMusic.getTrackName());
+                    intent.putExtra("collectionName", selectedMusic.getCollectionName());
+                    intent.putExtra("artworkUrl100", selectedMusic.getArtworkUrl100());
+                    intent.putExtra("country", selectedMusic.getCountry());
+                    intent.putExtra("primaryGenreName", selectedMusic.getPrimaryGenreName());
                     v.getContext().startActivity(intent);
                 }
             });
