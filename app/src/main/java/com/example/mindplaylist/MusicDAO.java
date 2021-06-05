@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface MusicDAO {
 
-    @Query("SELECT * FROM playlist")
+    @Query("SELECT * FROM music")
     List<Music> getPlaylist();
 
     @Insert

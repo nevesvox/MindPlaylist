@@ -11,37 +11,30 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ModeloAdapter extends RecyclerView.Adapter<ModeloAdapter.ViewHolder> {
+public class ModeloAdapterCustom extends RecyclerView.Adapter<ModeloAdapterCustom.ViewHolder> {
 
     // Esta declaração deverá ser adaptada para projetos futuros
     private List<Music> dados;
     private LayoutInflater inflater;
     private ItemClickListener itemClickListener;
     private ItemLongClickListener itemLongClickListener;
-    private AppDataBase dataBase;
 
     // O segundo parâmetro deverá ser adaptado para futuros projetos
-    public ModeloAdapter(Context context, List<Music> dados) {
+    public ModeloAdapterCustom(Context context, List<Music> dados) {
         this.inflater = LayoutInflater.from(context);
         this.dados = dados;
-
-        dataBase = Room.databaseBuilder(
-                context,
-                AppDataBase.class,
-                "banco").allowMainThreadQueries().build();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // A única coisa a ser adaptada aqui seria o nome do arquivo de layout da linha
-        View view = inflater.inflate(R.layout.linha_recycleview, parent, false);
+        View view = inflater.inflate(R.layout.linha_recycleviewcustom, parent, false);
         return new ViewHolder(view);
     }
 
@@ -85,24 +78,13 @@ public class ModeloAdapter extends RecyclerView.Adapter<ModeloAdapter.ViewHolder
                 public void onClick(View v) {
                     Music selectedMusic = dados.get(getAdapterPosition());
                     Log.d("teste", "teste" + selectedMusic.getTrackName());
-                    Intent intent = new Intent(v.getContext(), MusicDetails.class);
+                    Intent intent = new Intent(v.getContext(), MusicDetailsPlaylist.class);
+                    intent.putExtra("id", String.valueOf(selectedMusic.getId()));
                     intent.putExtra("trackName", selectedMusic.getTrackName());
                     intent.putExtra("collectionName", selectedMusic.getCollectionName());
                     intent.putExtra("artworkUrl100", selectedMusic.getArtworkUrl100());
                     intent.putExtra("country", selectedMusic.getCountry());
                     intent.putExtra("primaryGenreName", selectedMusic.getPrimaryGenreName());
-                    v.getContext().startActivity(intent);
-                }
-            });
-
-            itemView.findViewById(R.id.btnIncludePlaylist).setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v) {
-                    Music selectedMusic = dados.get(getAdapterPosition());
-                    dataBase.musicDAO().addMusic(selectedMusic);
-
-                    Intent intent = new Intent(v.getContext(), MyPlaylist.class);
                     v.getContext().startActivity(intent);
                 }
             });

@@ -1,13 +1,27 @@
 package com.example.mindplaylist;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Music{
+
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     public String wrapperType;
     public String collectionName;
     public String trackName;
     public String artworkUrl100;
     public String country;
     public String primaryGenreName;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getWrapperType() {
         return wrapperType;

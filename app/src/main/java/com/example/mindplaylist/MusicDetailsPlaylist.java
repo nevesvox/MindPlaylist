@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-public class MusicDetails extends AppCompatActivity {
+public class MusicDetailsPlaylist extends AppCompatActivity {
 
     TextView txtCountry;
     TextView txtTrackName;
@@ -20,11 +20,12 @@ public class MusicDetails extends AppCompatActivity {
     ImageView imageView;
     Music music = new Music();
     private AppDataBase dataBase;
+    String position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_details);
+        setContentView(R.layout.activity_music_details_playlist);
 
         dataBase = Room.databaseBuilder(
                 getApplicationContext(),
@@ -33,6 +34,9 @@ public class MusicDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         // Recupera os dados da música
+        String id = intent.getStringExtra("id");
+        int idFinal = Integer.parseInt(String.valueOf(id));
+        music.setId(idFinal);
         music.setTrackName(intent.getStringExtra("trackName"));
         music.setCollectionName(intent.getStringExtra("collectionName"));
         music.setArtworkUrl100(intent.getStringExtra("artworkUrl100"));
@@ -54,9 +58,8 @@ public class MusicDetails extends AppCompatActivity {
 
     }
 
-    public void insertMusicOnPlaylist(View view) {
-        dataBase.musicDAO().addMusic(music);
-
+    public void deleteMusicFromPlaylist(View view) {
+        dataBase.musicDAO().deleteMusic(music);
         Intent intent = new Intent(this, MyPlaylist.class);
         startActivity(intent);
     }
