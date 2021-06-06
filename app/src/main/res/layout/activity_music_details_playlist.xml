@@ -68,7 +68,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#ffffff"
             android:isIndicator="false"
             android:numStars="5"
             android:padding="0dp"
