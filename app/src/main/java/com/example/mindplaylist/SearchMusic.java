@@ -69,16 +69,22 @@ public class SearchMusic extends AppCompatActivity {
                             JSONArray results = response.getJSONArray("results");
                             for (int i = 0; i < results.length(); i++) {
                                 JSONObject object = results.getJSONObject(i);
+                                String trackName = object.has("trackName") ? object.getString("trackName") : "";
+                                String artistName = object.has("artistName") ? object.getString("artistName") : "";
+                                String artworkUrl100 = object.has("artworkUrl100") ? object.getString("artworkUrl100") : "";
+                                String collectionName = object.has("collectionName") ? object.getString("collectionName") : "";
+                                String primaryGenreName = object.has("primaryGenreName") ? object.getString("primaryGenreName") : "";
+                                String country = object.has("country") ? object.getString("country") : "";
 
                                 String type = object.getString("wrapperType");
                                 if (type.equals("track")) {
                                     Music music = new Music();
-                                    music.setTrackName(object.getString("trackName") +
-                                            " (" + object.getString("artistName") + ")");
-                                    music.setArtworkUrl100(object.getString("artworkUrl100"));
-                                    music.setCollectionName(object.getString("collectionName"));
-                                    music.setPrimaryGenreName(object.getString("primaryGenreName"));
-                                    music.setCountry(object.getString("country"));
+                                    music.setTrackName(trackName +
+                                            " (" + artistName + ")");
+                                    music.setArtworkUrl100(artworkUrl100);
+                                    music.setCollectionName(collectionName);
+                                    music.setPrimaryGenreName(primaryGenreName);
+                                    music.setCountry(country);
 
                                     musics.add(music);
                                 }

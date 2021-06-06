@@ -85,6 +85,7 @@ public class ModeloAdapterCustom extends RecyclerView.Adapter<ModeloAdapterCusto
                     intent.putExtra("artworkUrl100", selectedMusic.getArtworkUrl100());
                     intent.putExtra("country", selectedMusic.getCountry());
                     intent.putExtra("primaryGenreName", selectedMusic.getPrimaryGenreName());
+                    intent.putExtra("rate", String.valueOf(selectedMusic.getRate()));
                     v.getContext().startActivity(intent);
                 }
             });

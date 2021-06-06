@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface MusicDAO {
 
-    @Query("SELECT * FROM music")
+    @Query("SELECT * FROM music ORDER BY rate DESC")
     List<Music> getPlaylist();
 
     @Insert

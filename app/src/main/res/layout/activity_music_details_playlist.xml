@@ -31,7 +31,7 @@
             android:layout_weight="0"
             android:gravity="center_horizontal|center_vertical"
             android:text="TextView"
-            android:textSize="34sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txtCollection2"
@@ -63,11 +63,31 @@
             android:text="TextView"
             android:textSize="20sp" />
 
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#ffffff"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:padding="0dp"
+            android:stepSize="1" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSaveRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="saveRate"
+            android:text="Salvar" />
 
         <Button
             android:id="@+id/btnDeleteFromPlaylist"
@@ -79,6 +99,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:backgroundTint="#F44336" />
+
     </LinearLayout>
 
 </LinearLayout>

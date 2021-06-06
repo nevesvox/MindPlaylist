@@ -14,6 +14,7 @@ public class Music{
     public String artworkUrl100;
     public String country;
     public String primaryGenreName;
+    public int rate;
 
     public int getId() {
         return id;
@@ -70,5 +71,8 @@ public class Music{
     public void setPrimaryGenreName(String primaryGenreName) {
         this.primaryGenreName = primaryGenreName;
     }
+    public int getRate() { return rate; }
+    
+    public void setRate(int rate) { this.rate = rate; }
 }
 

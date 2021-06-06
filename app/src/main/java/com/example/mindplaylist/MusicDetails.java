@@ -38,6 +38,7 @@ public class MusicDetails extends AppCompatActivity {
         music.setArtworkUrl100(intent.getStringExtra("artworkUrl100"));
         music.setCountry(intent.getStringExtra("country"));
         music.setPrimaryGenreName(intent.getStringExtra("primaryGenreName"));
+        music.setRate(0);
 
         txtCountry = findViewById(R.id.txtCountry2);
         txtTrackName = findViewById(R.id.txtTrackName2);
